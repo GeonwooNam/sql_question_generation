@@ -70,6 +70,7 @@ def llm_inference(prompts, db_ids, complexities, output_file):
 
         llm_results.append(response)
         save_result_to_jsonl(prompt, db_id, response, complexity, filepath=output_file)
+        client.close()
 
         if i < len(prompts) - 1:
             time.sleep(30)
