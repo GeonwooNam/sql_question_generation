@@ -19,4 +19,4 @@ Generate SQL queries by leveraging database schemas, database values, query comp
 2. Run `python3 synthesize_sql.py` to generate SQL queries using LLMs.
    - Implement the `llm_inference()` function to integrate your preferred LLM.
    - Post-processing is included in the file.
-   - The final synthetic SQL queries will be saved in `./results/llm_results.jsonl`.
+   - The final synthetic SQL queries will be saved in `./results/synthetic_sqls.jsonl`.

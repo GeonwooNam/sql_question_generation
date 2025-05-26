@@ -29,7 +29,7 @@ def parse_response(response):
     return flat_sql
 
 
-def save_result_to_jsonl(prompt, db_id, response, complexity, filepath="results/llm_results.jsonl"):
+def save_result_to_jsonl(prompt, db_id, response, complexity, filepath="results/synthetic_sqls.jsonl"):
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
 
     with open(filepath, "a", encoding="utf-8") as f:
@@ -81,7 +81,7 @@ def llm_inference(prompts, db_ids, complexities, output_file):
 if __name__ == '__main__':
     with open("prompts/sql_synthesis_prompts.json", encoding="utf-8") as f:
         input_dataset = json.load(f)
-    output_file = "results/llm_results.jsonl"
+    output_file = "results/synthetic_sqls.jsonl"
 
     db_ids = [data["db_id"] for data in input_dataset]
     prompts = [data["prompt"] for data in input_dataset]
