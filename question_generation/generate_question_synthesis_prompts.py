@@ -2,7 +2,6 @@ import json
 import os
 import sys
 import random
-import sqlite3
 import numpy as np
 import re
 from pathlib import Path
