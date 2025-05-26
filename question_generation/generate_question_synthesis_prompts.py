@@ -198,9 +198,6 @@ def extract_used_column_map(sql_query, table_map):
     return used_map
 
 
-BASE_DIR = "data_synthesis"
-SUB_DIR = "question_synthesis"
-
 if __name__ == "__main__":
     random.seed(42)
     sql_infos = []
