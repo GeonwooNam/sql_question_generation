@@ -55,7 +55,7 @@ def llm_inference(complexities, sql_queries, styles, prompts, output_file):
     for i, (complexity, sql_query, style, prompt) in tqdm(enumerate(zip(complexities, sql_queries, styles, prompts))):
 
         client = GroqAPIClient()
-        response = client.send(system_prompt=prompt, task_type="sql_generation")
+        response = client.send(system_prompt=prompt, task_type="question_generation")
 
         if response is not None:
             print("✅ LLM 답변 완료")
@@ -67,7 +67,7 @@ def llm_inference(complexities, sql_queries, styles, prompts, output_file):
         client.close()
 
         if i < len(prompts) - 1:
-            time.sleep(15)
+            time.sleep(10)
 
     return responses_list
 

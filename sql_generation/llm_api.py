@@ -20,7 +20,7 @@ class GroqAPIClient:
         if task_type == "sql_generation":
             model = "meta-llama/llama-4-scout-17b-16e-instruct"
             temperature = 0.0
-        elif task_type == "sql-to-text":
+        elif task_type == "question_generation":
             model = "meta-llama/llama-4-scout-17b-16e-instruct"
             # model = "meta-llama/llama-4-maverick-17b-128e-instruct"
             temperature = 0.8
