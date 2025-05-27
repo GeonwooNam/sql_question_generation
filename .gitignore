@@ -1,3 +1,4 @@
 .idea/
 .env
 sql_generation/all_tables_sample.pkl
+__pycache__/
