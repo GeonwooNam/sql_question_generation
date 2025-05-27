@@ -19,11 +19,14 @@ class GroqAPIClient:
     def send(self, system_prompt: str, user_prompt: str = "", task_type: str = "sql_generation"):
         if task_type == "sql_generation":
             model = "meta-llama/llama-4-scout-17b-16e-instruct"
+            temperature = 0.0
         elif task_type == "sql-to-text":
             model = "meta-llama/llama-4-scout-17b-16e-instruct"
             # model = "meta-llama/llama-4-maverick-17b-128e-instruct"
+            temperature = 0.8
         else:
             model = None
+            temperature = 0.0
 
         messages = [
             {"role": "system", "content": system_prompt},
@@ -33,7 +36,7 @@ class GroqAPIClient:
         payload = {
             "model": model,
             "messages": messages,
-            "temperature": 0.0,
+            "temperature": temperature,
             "max_tokens": 1024
         }
 
