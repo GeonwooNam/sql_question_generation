@@ -69,7 +69,7 @@ def llm_inference(prompts, db_ids, complexities, output_file):
             print("❌❌ LLM 답변 실패")
 
         responses_list.append(response)
-        save_question_result_to_jsonl(prompt, db_id, response, complexity, filepath=output_file)
+        save_query_result_to_jsonl(prompt, db_id, response, complexity, filepath=output_file)
         client.close()
 
         if i < len(prompts) - 1:
