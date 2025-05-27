@@ -6,7 +6,7 @@ from tqdm import tqdm
 from llm_api import GroqAPIClient
 
 
-def parse_response(response):
+def extract_sql_query(response):
     pattern = r"```sql\s*(.*?)\s*```"
     
     sql_blocks = re.findall(pattern, response, re.DOTALL)
@@ -29,13 +29,13 @@ def parse_response(response):
     return flat_sql
 
 
-def save_result_to_jsonl(prompt, db_id, response, complexity, filepath="results/synthetic_sqls.jsonl"):
+def save_question_result_to_jsonl(prompt, db_id, response, complexity, filepath="results/synthetic_sqls.jsonl"):
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
 
     with open(filepath, "a", encoding="utf-8") as f:
         json.dump({
             "complexity": complexity,
-            "sql_query": parse_response(response),
+            "sql_query": extract_sql_query(response),
             # "prompt": prompt,
             # "db_id": db_id,
         }, f)
@@ -56,7 +56,7 @@ def llm_inference(prompts, db_ids, complexities, output_file):
         list of dict: A list of dictionaries containing the prompt, db_id, and generated response.
     """
 
-    llm_results = []
+    responses_list = []
 
     for i, (db_id, prompt, complexity) in tqdm(enumerate(zip(db_ids, prompts, complexities))):
 
@@ -68,14 +68,14 @@ def llm_inference(prompts, db_ids, complexities, output_file):
         else:
             print("❌❌ LLM 답변 실패")
 
-        llm_results.append(response)
-        save_result_to_jsonl(prompt, db_id, response, complexity, filepath=output_file)
+        responses_list.append(response)
+        save_question_result_to_jsonl(prompt, db_id, response, complexity, filepath=output_file)
         client.close()
 
         if i < len(prompts) - 1:
             time.sleep(30)
 
-    return llm_results
+    return responses_list
 
 
 if __name__ == '__main__':
@@ -87,4 +87,4 @@ if __name__ == '__main__':
     prompts = [data["prompt"] for data in input_dataset]
     complexities = [data["complexity"] for data in input_dataset]
     
-    results = llm_inference(prompts, db_ids, complexities, output_file)
+    responses_list = llm_inference(prompts, db_ids, complexities, output_file)

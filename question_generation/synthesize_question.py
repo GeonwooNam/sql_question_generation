@@ -48,6 +48,7 @@ def llm_inference(complexities, sql_queries, styles, prompts, output_file):
         output_file: file path to restore output results
 
     Returns:
+        List of responses
     """
 
     responses_list = []
@@ -68,7 +69,7 @@ def llm_inference(complexities, sql_queries, styles, prompts, output_file):
         if i < len(prompts) - 1:
             time.sleep(15)
 
-    return
+    return responses_list
 
 
 if __name__ == '__main__':
@@ -80,4 +81,4 @@ if __name__ == '__main__':
     styles = [data["style"] for data in input_dataset]
     prompts = [data["prompt"] for data in input_dataset]
 
-    llm_inference(complexities, sql_queries, styles, prompts, output_file)
+    responses_list = llm_inference(complexities, sql_queries, styles, prompts, output_file)
