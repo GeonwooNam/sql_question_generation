@@ -29,7 +29,7 @@ def extract_sql_query(response):
     return flat_sql
 
 
-def save_question_result_to_jsonl(prompt, db_id, response, complexity, filepath="results/synthetic_sqls.jsonl"):
+def save_query_result_to_jsonl(prompt, db_id, response, complexity, filepath="results/synthetic_sqls.jsonl"):
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
 
     with open(filepath, "a", encoding="utf-8") as f:
