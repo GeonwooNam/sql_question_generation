@@ -24,6 +24,8 @@ You have to strictly follow the instructions below.
 2. Incorporate advanced functions if appropriate, but they are not mandatory.
 3. Address real-world data analysis needs. Avoid trivial or nonsensical queries.
 4. (Very important) Ensure the final SQL query selects {column_count} columns.
+5. (Very important) If the SQL query includes JOIN, you must add a GROUP BY clause before ORDER BY. The GROUP BY clause must include all columns from the SELECT and ORDER BY clauses to prevent row duplication caused by join multiplicity.
+6. Always include the primary key (PK) columns of the tables involved in the SELECT clause.
 
 **Answer**
 Let's proceed step by step.

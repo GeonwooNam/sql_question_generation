@@ -38,7 +38,7 @@ complexity_weights = [0.15, 0.25, 0.3, 0.3]
 
 # 3. 프롬프트 생성
 prompts = []
-for i in tqdm(range(32)):  # 원하는 쿼리 수
+for i in tqdm(range(50)):  # 원하는 쿼리 수
     complexity = random.choices(["Simple", "Moderate", "Complex", "Highly Complex"], weights=complexity_weights, k=1)[0]
     complexity2n = {
         "Simple": 0,
