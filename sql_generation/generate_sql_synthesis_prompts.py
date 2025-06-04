@@ -54,7 +54,8 @@ for i in tqdm(range(50)):  # 원하는 쿼리 수
     for table_name, df in all_tables_data.items():
         if len(df) == 0:
             continue
-        n_rows = np.random.choice([1, 2])
+        # n_rows = np.random.choice([1, 2])
+        n_rows = 1
         sample_df = df.sample(n=min(n_rows, len(df)))
         for _, row in sample_df.iterrows():
             row_str = ', '.join(f"{col}={repr(val)}" for col, val in row.items())

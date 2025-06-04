@@ -73,7 +73,7 @@ def llm_inference(prompts, db_ids, complexities, output_file):
         client.close()
 
         if i < len(prompts) - 1:
-            time.sleep(30)
+            time.sleep(20)
 
     return responses_list
 
@@ -81,7 +81,7 @@ def llm_inference(prompts, db_ids, complexities, output_file):
 if __name__ == '__main__':
     with open("prompts/sql_synthesis_prompts.json", encoding="utf-8") as f:
         input_dataset = json.load(f)
-    output_file = "results/synthetic_sqls.jsonl"
+    output_file = "results/synthetic_sqls_6th.jsonl"
 
     db_ids = [data["db_id"] for data in input_dataset]
     prompts = [data["prompt"] for data in input_dataset]

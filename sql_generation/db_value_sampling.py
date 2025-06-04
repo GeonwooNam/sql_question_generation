@@ -40,7 +40,7 @@ def db_value_sampling(schema: str = 'public', tables_sample_path: str = 'all_tab
                 engine = create_engine(connection_string)
                 print("엔진 생성 성공.")
             try:
-                query = text(f"SELECT * FROM {schema}.{table_name} LIMIT 100;")
+                query = text(f"SELECT * FROM {schema}.{table_name} LIMIT 30;")
                 df_result = pd.read_sql(query, con=engine)
                 all_tables_data[table_name] = df_result
                 print(f"테이블 {table_name} 행 {len(df_result)}개 업데이트 완료.")

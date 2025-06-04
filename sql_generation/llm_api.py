@@ -19,11 +19,15 @@ class GroqAPIClient:
     def send(self, system_prompt: str, user_prompt: str = "", task_type: str = "sql_generation"):
         if task_type == "sql_generation":
             model = "meta-llama/llama-4-scout-17b-16e-instruct"
-            temperature = 0.0
+            temperature = 0.7
         elif task_type == "question_generation":
             model = "meta-llama/llama-4-scout-17b-16e-instruct"
             # model = "meta-llama/llama-4-maverick-17b-128e-instruct"
             temperature = 0.8
+        elif task_type == "sql_correction":
+            model = "meta-llama/llama-4-scout-17b-16e-instruct"
+            # model = "llama-3.3-70b-versatile"
+            temperature = 0.0
         else:
             model = None
             temperature = 0.0
